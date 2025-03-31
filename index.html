@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Photo Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        #container {
+            width: 90%;
+            max-width: 400px;
+            margin: 10vh auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            font-size: 16px;
+            padding: 12px;
+            margin-top: 10px;
+            width: 90%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #photo {
+            display: none;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        #message {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        @media (min-width: 600px) {
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            #container {
+                width: 80%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Enter a Name to See a Photo</h2>
+        <input type="text" id="nameInput" placeholder="Enter name">
+        <button onclick="displayPhoto()">Submit</button>
+        <p id="message"></p>
+        <img id="photo" src="ash.jpeg" alt="Photo">
+    </div>
+
+    <script>
+        function displayPhoto() {
+            const name = document.getElementById("nameInput").value.trim();
+            const restrictedNames = ["Parijat", "parijat", "parijat Barua", "Parijat Barua", "Parijat barua", "Barua", "barua"];
+            const message = document.getElementById("message");
+            const photo = document.getElementById("photo");
+
+            if (restrictedNames.includes(name)) {
+                message.textContent = "Try again later";
+                photo.style.display = "none";
+            } else if (name) {
+                message.textContent = "";
+                photo.style.display = "block";
+            } else {
+                message.textContent = "Please enter a valid name";
+                photo.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
